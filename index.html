@@ -2146,6 +2146,54 @@
 </body>
 
 <script>
+  const events = [
+    { day: "12", mon: "NOV", time: "13:00", title: "Réunion de conférence", desc: "Institutions fortes et lutte contre la corruption", more: "+40" },
+    { day: "20", mon: "NOV", time: "18:00", title: "Cocktail", desc: "Cocktail avec la direction de la JC-RHDP", more: "+99" },
+    { day: "30", mon: "DEC", time: "22:00", title: "Réunion de conférence", desc: "Côte d’Ivoire : 15 ans de paix et de sécurité ", more: "+60" },
+    { day: "4", mon: "JAN", time: "13:00", title: "Réunion de conférence", desc: "Une Côte d’Ivoire plus propre sous Alassane Ouattara", more: "+60" },
+    { day: "13", mon: "JAN", time: "20:00", title: "Réunion de conférence", desc: "Une jeunesse connectée, compétente et créatrice d’avenir", more: "+60" },
+    { day: "18", mon: "FEV", time: "22:00", title: "Réunion de conférence", desc: "15 ans de transformation accélérée des infrastructures en Côte d’Ivoire", more: "+60", active: true },
+    { day: "26", mon: "FEV", time: "15:00", title: "Dîner-rencontre", desc: "Dîner avec les dirigeants de la JC-RHDP", more: "+80" }
+  ];
+
+  const container = document.getElementById('card-list');
+  const nextBtn = document.querySelector('.next');
+  const prevBtn = document.querySelector('.prev');
+
+  // 1. Render Cards
+  events.forEach(ev => {
+    const card = document.createElement('div');
+    card.className = `card ${ev.active ? 'active' : ''}`;
+    card.innerHTML = `
+      <div class="date-row">
+        <span class="day">${ev.day}</span>
+        <div class="month-time">${ev.mon} <span class="time">${ev.time}</span></div>
+      </div>
+      <div class="title">${ev.title}</div>
+      <div class="desc">${ev.desc}</div>
+      <div class="attendees">
+        <img src="assets/img/person/person-m-6.webp" class="avatar">
+        <div class="avatar" style="background:#bfe0cc; color:#0b8037">MT</div>
+        <img src="assets/img/person/person-m-7.webp" class="avatar">
+        <div class="avatar more">${ev.more}</div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+
+  // 2. Sliding Functionality
+  const scrollAmount = 300; // Adjust this based on your card width + gap
+
+  nextBtn.addEventListener('click', () => {
+    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  });
+
+  prevBtn.addEventListener('click', () => {
+    container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  });
+</script>
+
+<script>
   // 1. Data Definitions
   const regionData = [
     { id: "lagunes", name: "Lagunes", coords: [5.36, -3.99], cadres: 1450, color: "#0b8037", avatar: "person-f-9" },
@@ -2230,54 +2278,6 @@
   function focusOnMap(lat, lng, regionId) {
     map.flyTo([lat, lng], 9, { duration: 1.5 });
   }
-</script>
-
-<script>
-  const events = [
-    { day: "12", mon: "NOV", time: "13:00", title: "Réunion de conférence", desc: "Institutions fortes et lutte contre la corruption", more: "+40" },
-    { day: "20", mon: "NOV", time: "18:00", title: "Cocktail", desc: "Cocktail avec la direction de la JC-RHDP", more: "+99" },
-    { day: "30", mon: "DEC", time: "22:00", title: "Réunion de conférence", desc: "Côte d’Ivoire : 15 ans de paix et de sécurité ", more: "+60" },
-    { day: "4", mon: "JAN", time: "13:00", title: "Réunion de conférence", desc: "Une Côte d’Ivoire plus propre sous Alassane Ouattara", more: "+60" },
-    { day: "13", mon: "JAN", time: "20:00", title: "Réunion de conférence", desc: "Une jeunesse connectée, compétente et créatrice d’avenir", more: "+60" },
-    { day: "18", mon: "FEV", time: "22:00", title: "Réunion de conférence", desc: "15 ans de transformation accélérée des infrastructures en Côte d’Ivoire", more: "+60", active: true },
-    { day: "26", mon: "FEV", time: "15:00", title: "Dîner-rencontre", desc: "Dîner avec les dirigeants de la JC-RHDP", more: "+80" }
-  ];
-
-  const container = document.getElementById('card-list');
-  const nextBtn = document.querySelector('.next');
-  const prevBtn = document.querySelector('.prev');
-
-  // 1. Render Cards
-  events.forEach(ev => {
-    const card = document.createElement('div');
-    card.className = `card ${ev.active ? 'active' : ''}`;
-    card.innerHTML = `
-      <div class="date-row">
-        <span class="day">${ev.day}</span>
-        <div class="month-time">${ev.mon} <span class="time">${ev.time}</span></div>
-      </div>
-      <div class="title">${ev.title}</div>
-      <div class="desc">${ev.desc}</div>
-      <div class="attendees">
-        <img src="assets/img/person/person-m-6.webp" class="avatar">
-        <div class="avatar" style="background:#bfe0cc; color:#0b8037">MT</div>
-        <img src="assets/img/person/person-m-7.webp" class="avatar">
-        <div class="avatar more">${ev.more}</div>
-      </div>
-    `;
-    container.appendChild(card);
-  });
-
-  // 2. Sliding Functionality
-  const scrollAmount = 300; // Adjust this based on your card width + gap
-
-  nextBtn.addEventListener('click', () => {
-    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-  });
-
-  prevBtn.addEventListener('click', () => {
-    container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-  });
 </script>
 
 </html>
