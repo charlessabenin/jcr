@@ -590,8 +590,13 @@
 
 
 
-    <section>
+    <section>  
       <div class="container">
+        <div class="container section-title">
+          <h2>Carte</h2>
+          <p>Carte ou graphique interactif des jeunes cadres par région</p>
+        </div>
+
         <div class="container-fluid mt-4">
           <div class="row">
             <div class="col-md-8">
@@ -2143,9 +2148,9 @@
 <script>
   // 1. Data Definitions
   const regionData = [
-    { id: "lagunes", name: "Lagunes", coords: [5.36, -3.99], cadres: 1450, color: "#4a7dff" },
-    { id: "savanes", name: "Savanes", coords: [9.45, -5.62], cadres: 610, color: "#2ecc71" },
-    { id: "zanzan", name: "Zanzan", coords: [8.03, -2.80], cadres: 420, color: "#e67e22" }
+    { id: "lagunes", name: "Lagunes", coords: [5.36, -3.99], cadres: 1450, color: "#0b8037", avatar: "person-f-9" },
+    { id: "savanes", name: "Savanes", coords: [9.45, -5.62], cadres: 610, color: "#0b8037", avatar: "person-m-12" },
+    { id: "zanzan", name: "Zanzan", coords: [8.03, -2.80], cadres: 420, color: "#0b8037", avatar: "person-f-4" }
   ];
 
   // 2. Initialize Map
@@ -2165,15 +2170,27 @@
     }
   }).addTo(map);
 
-  // $.getJSON("assets/regions.json", function (data) { console.log(data);
-  //   regions.addData(data);
-  // });
+  let pays = L.geoJson(null, {
+    style: function (feature) {
+      return {
+        color: '#0b8037',
+        weight: 3,
+        fill: false,
+      };
+    }
+  }).addTo(map);
 
   fetch('assets/regions.json')
   .then(r => r.json())
   .then(data => {
     regions.addData(data);
-    map.fitBounds(regions.getBounds());
+  });
+
+  fetch('assets/pays.geojson')
+  .then(r => r.json())
+  .then(data => {
+    pays.addData(data);
+    map.fitBounds(pays.getBounds());
   });
 
   const accordionContainer = document.getElementById('regionAccordion');
@@ -2183,7 +2200,7 @@
     // A. Create Bootstrap Accordion HTML
     const isActive = index === 0 ? 'show' : '';
     const collapsed = index === 0 ? '' : 'collapsed';
-    
+
     accordionContainer.innerHTML += `
         <div class="accordion-item" id="acc-item-${region.id}">
             <h2 class="accordion-header">
@@ -2205,7 +2222,7 @@
     const avatarIcon = L.divIcon({
         className: 'custom-div-icon',
         html: `<div class="avatar-marker" onclick="openAccordion('${region.id}')">
-                <img src="https://i.pravatar.cc/100?u=${region.id}">
+                <img src="assets/img/person/${region.avatar}.webp?u=${region.id}">
                </div>`,
         iconSize: [45, 45]
     });
