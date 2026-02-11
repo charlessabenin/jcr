@@ -26,6 +26,13 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <style>
+    #map { height: 600px; width: 100%; border-radius: 8px; }
+    .sidebar { height: 600px; overflow-y: auto; }
+  </style>
+
   <!-- =======================================================
   * Template Name: Devin
   * Template URL: https://bootstrapmade.com/devin-bootstrap-template/
@@ -466,9 +473,13 @@
           </div>
           <div class="col-lg-6">
             <div class="hero-image">
-              <img src="assets/img/logo_rhdp.webp" class="img-fluid floating" alt="">
+              <img src="assets/img/logo_rhdp.webp" style="margin-right: 40%;" class="img-fluid floating" alt="">
             </div>
           </div>
+
+          <div class="headerImg">
+              <img src="assets/img/president.webp">
+            </div>
         </div>
       </div>
 
@@ -542,18 +553,9 @@
           <div class="col-lg-6">
             <div class="content">
               <h2>Présentation de la JC-RHDP</h2>
-              <p class="lead">La plateforme des Jeunes Cadres du Rassemblement des Houphouëtistes
-                pour la Démocratie et la Paix (JC-RHDP), créée en 2015, est une
-                organisation de jeunes leaders et professionnels engagés dans la promotion
-                des idéaux du RHDP et la valorisation des actions de gouvernance du
-                Président Alassane Ouattara.</p>
-
-              <p>Ces jeunes cadres sont le fruit de quinze années de gouvernance du
-                Président Alassane Ouattara qui a mis en avant leur encadrement et leur
-                émergence à divers niveaux de responsabilités tant dans l’administration
-                publique que privée : des Ministres, des Présidents de Conseils
-                d’Administration, des Directeurs Généraux, des Directeurs d’administration
-                centrale, etc ….</p>
+              <p class="lead">Sous le leadership du Ministre Mamadou Touré, la Jeunesse Cadre du RHDP (JC-RHDP) s’est pleinement engagée lors des dernières élections présidentielles et législatives, contribuant de manière significative à la large victoire du RHDP.</p>
+              <p>Forte de cette dynamique, elle ambitionne aujourd’hui de renforcer son rôle dans l’animation de la vie politique, la mobilisation citoyenne et la réflexion stratégique du parti.</p>
+              <p>Animée par la volonté d’être à la fois une force de propositions, une plateforme de valorisation des actions de gouvernance du Président Alassane Ouattara et un espace de mise en lumière des jeunes cadres ivoiriens compétents, la JC-RHDP se doit désormais de s’appuyer sur un outil de communication moderne, performant et fiable : un site internet institutionnel.</p>
 
               <!-- Stats Row -->
               <div class="stats-row">
@@ -583,18 +585,34 @@
           </div>
 
         </div>
-
       </div>
-
     </section><!-- /About Section -->
 
 
-    <section class="section gray-bg" id="services">
+
+    <section>
+      <div class="container">
+        <div class="container-fluid mt-4">
+          <div class="row">
+            <div class="col-md-8">
+                <div id="map" style="height: 600px; border-radius: 15px;" class="shadow"></div>
+            </div>
+            <div class="col-md-4">
+                <div class="accordion shadow-sm" id="regionAccordion" style="max-height: 600px; overflow-y: auto;">
+                    </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="section" id="services" style="background: color-mix(in srgb, var(--accent-color), transparent 90%);">
       <div class="container">
           <div class="row justify-content-center">
               <div class="col-lg-7 text-center">
                   <div class="section-title">
-                      <h2>Latest News</h2>
+                      <h2>Actualités récentes</h2>
                       <p>I design and develop services for customers of all sizes, specializing in creating stylish, modern websites</p>
                   </div>
               </div>
@@ -663,6 +681,29 @@
           </div>
       </div>
     </section>
+
+
+    <section class="section" id="events" style="background: color-mix(in srgb, var(--accent-color), transparent 90%);">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-7 text-center">
+            <div class="section-title">
+              <h2>Événements à venir</h2>
+              <p>I design and develop services for customers of all sizes, specializing in creating stylish, modern websites</p>
+            </div>
+          </div>
+        </div>
+        <div class="event-slider">
+          <button class="nav-btn prev"></button>
+          
+          <div class="card-container" id="card-list">
+            </div>
+
+          <button class="nav-btn next"></button>
+        </div>
+      </div>
+    </section>
+
 
     <!-- Services Section -->
     <section id="actions" class="services section">
@@ -884,7 +925,7 @@
             <div class="image-container">
               <img src="assets/img/illustration/illustration-8.webp" alt="Team Environment" class="img-fluid">
             </div>
-          </div> 
+          </div>
         </div>
 
       </div>
@@ -1101,7 +1142,7 @@
     </section><!-- /Portfolio Section -->
 
     <!-- How We Work Section -->
-    <section id="organisation" class="how-we-work section">
+    <section id="organisation" class="how-we-work section" style="background: color-mix(in srgb, #0b8037, transparent 90%);">
 
       <!-- Section Title -->
       <div class="container section-title">
@@ -1162,7 +1203,7 @@
     </section><!-- /How We Work Section -->
 
     <!-- Tabs Section -->
-    <section id="tabs" class="tabs section">
+    <section id="tabs" class="tabs section" style="background: color-mix(in srgb, #0b8037, transparent 90%);">
 
       <div class="container">
 
@@ -2082,6 +2123,8 @@
   <!-- Preloader -->
   <div id="preloader"></div>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
@@ -2094,6 +2137,147 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </body>
+
+<script>
+  // 1. Data Definitions
+  const regionData = [
+    { id: "lagunes", name: "Lagunes", coords: [5.36, -3.99], cadres: 1450, color: "#4a7dff" },
+    { id: "savanes", name: "Savanes", coords: [9.45, -5.62], cadres: 610, color: "#2ecc71" },
+    { id: "zanzan", name: "Zanzan", coords: [8.03, -2.80], cadres: 420, color: "#e67e22" }
+  ];
+
+  // 2. Initialize Map
+  const map = L.map('map').setView([7.5399, -5.5471], 7);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').addTo(map);
+
+  let regions = L.geoJson(null, {
+    style: function (feature) {
+      return {
+        color: '#ea8211',
+        fillColor: '#ea8211',
+        dashArray: '3',
+        weight: 1,
+        fill: true,
+        opacity: 0.4
+      };
+    }
+  }).addTo(map);
+
+  // $.getJSON("assets/regions.json", function (data) { console.log(data);
+  //   regions.addData(data);
+  // });
+
+  fetch('assets/regions.json')
+  .then(r => r.json())
+  .then(data => {
+    regions.addData(data);
+    map.fitBounds(regions.getBounds());
+  });
+
+  const accordionContainer = document.getElementById('regionAccordion');
+
+  // 3. Create Accordion Items & Map Elements
+  regionData.forEach((region, index) => {
+    // A. Create Bootstrap Accordion HTML
+    const isActive = index === 0 ? 'show' : '';
+    const collapsed = index === 0 ? '' : 'collapsed';
+    
+    accordionContainer.innerHTML += `
+        <div class="accordion-item" id="acc-item-${region.id}">
+            <h2 class="accordion-header">
+                <button class="accordion-button ${collapsed}" type="button" 
+                        data-bs-toggle="collapse" data-bs-target="#collapse-${region.id}"
+                        onclick="focusOnMap(${region.coords[0]}, ${region.coords[1]}, '${region.id}')">
+                    ${region.name}
+                </button>
+            </h2>
+            <div id="collapse-${region.id}" class="accordion-collapse collapse ${isActive}" data-bs-parent="#regionAccordion">
+                <div class="accordion-body">
+                    <strong>Total Cadres:</strong> ${region.cadres}<br>
+                    <p class="mt-2 text-muted">Statistiques régionales pour ${region.name}.</p>
+                </div>
+            </div>
+        </div>`;
+
+    // B. Create Avatar Marker
+    const avatarIcon = L.divIcon({
+        className: 'custom-div-icon',
+        html: `<div class="avatar-marker" onclick="openAccordion('${region.id}')">
+                <img src="https://i.pravatar.cc/100?u=${region.id}">
+               </div>`,
+        iconSize: [45, 45]
+    });
+
+    L.marker(region.coords, { icon: avatarIcon }).addTo(map)
+     .on('click', () => {
+         openAccordion(region.id);
+         focusOnMap(region.coords[0], region.coords[1], region.id);
+     });
+  });
+
+  // 4. Interaction Functions
+  function openAccordion(regionId) {
+    const targetBtn = document.querySelector(`[data-bs-target="#collapse-${regionId}"]`);
+    const bootstrapCollapse = new bootstrap.Collapse(document.getElementById(`collapse-${regionId}`), {
+        toggle: true
+    });
+    // Scroll the sidebar to the active item
+    document.getElementById(`acc-item-${regionId}`).scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function focusOnMap(lat, lng, regionId) {
+    map.flyTo([lat, lng], 9, { duration: 1.5 });
+  }
+</script>
+
+<script>
+  const events = [
+    { day: "12", mon: "NOV", time: "13:00", title: "Réunion de conférence", desc: "Institutions fortes et lutte contre la corruption", more: "+40" },
+    { day: "20", mon: "NOV", time: "18:00", title: "Cocktail", desc: "Cocktail avec la direction de la JC-RHDP", more: "+99" },
+    { day: "30", mon: "DEC", time: "22:00", title: "Réunion de conférence", desc: "Côte d’Ivoire : 15 ans de paix et de sécurité ", more: "+60" },
+    { day: "4", mon: "JAN", time: "13:00", title: "Réunion de conférence", desc: "Une Côte d’Ivoire plus propre sous Alassane Ouattara", more: "+60" },
+    { day: "13", mon: "JAN", time: "20:00", title: "Réunion de conférence", desc: "Une jeunesse connectée, compétente et créatrice d’avenir", more: "+60" },
+    { day: "18", mon: "FEV", time: "22:00", title: "Réunion de conférence", desc: "15 ans de transformation accélérée des infrastructures en Côte d’Ivoire", more: "+60", active: true },
+    { day: "26", mon: "FEV", time: "15:00", title: "Dîner-rencontre", desc: "Dîner avec les dirigeants de la JC-RHDP", more: "+80" }
+  ];
+
+  const container = document.getElementById('card-list');
+  const nextBtn = document.querySelector('.next');
+  const prevBtn = document.querySelector('.prev');
+
+  // 1. Render Cards
+  events.forEach(ev => {
+    const card = document.createElement('div');
+    card.className = `card ${ev.active ? 'active' : ''}`;
+    card.innerHTML = `
+      <div class="date-row">
+        <span class="day">${ev.day}</span>
+        <div class="month-time">${ev.mon} <span class="time">${ev.time}</span></div>
+      </div>
+      <div class="title">${ev.title}</div>
+      <div class="desc">${ev.desc}</div>
+      <div class="attendees">
+        <img src="assets/img/person/person-m-6.webp" class="avatar">
+        <div class="avatar" style="background:#bfe0cc; color:#0b8037">MT</div>
+        <img src="assets/img/person/person-m-7.webp" class="avatar">
+        <div class="avatar more">${ev.more}</div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+
+  // 2. Sliding Functionality
+  const scrollAmount = 300; // Adjust this based on your card width + gap
+
+  nextBtn.addEventListener('click', () => {
+    container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  });
+
+  prevBtn.addEventListener('click', () => {
+    container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  });
+</script>
 
 </html>
